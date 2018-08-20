@@ -12,9 +12,9 @@ define([
 
 
 
-  function Shop(settings, _parent) {
-    this._parent = _parent || false;
-    this._settings = this._parent._mainSettings;
+  function Shop(_xsolla, settings) {
+    this._xsolla = _xsolla || false;
+    this._settings = this._xsolla._mainSettings;
     this._shopSettings = this._settings['shopSettings'];
     this._cartSettings = this._settings['cartSettings'] || null;
     this.currency; //Будет перезаписана в buildData ['$', 0];

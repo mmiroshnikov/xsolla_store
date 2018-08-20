@@ -11,6 +11,7 @@ define([
   function Cart(parentShop) {
     //* Cart Basics */
     this._shop = parentShop;
+    this._xsolla = this._shop._xsolla;
     this._cartSettings = this._shop._cartSettings;
 
     this.offvalue = false;
@@ -25,7 +26,7 @@ define([
     this.cartAddAnimation = this._cartSettings['cartAddAnimation'] || false;
     this.ixCartShow = this._cartSettings['cartShowAnim'] || false;
     this.ixCartHide = this._cartSettings['cartHideAnim'] || false;
-    this.afterChangeCallback = this._cartSettings['afterChange'] || false;
+    this.afterChangeCallback = this._xsolla['callbacks']['cartAfterChange'] || false;
     //* Cart Elements */
     this.$cartIcon = $(this._cartSettings.cartElements['cartIcon']) || false;
     this.$cartAddGlow = $(this._cartSettings.cartElements['cartAddGlow']);
@@ -49,7 +50,7 @@ define([
     // this.cartOpeners();
     // this.cartClosers();
 
-    this.afterChange();
+    this.afterChangeCallback && this.afterChangeCallback();
     this.calculateTotal();
   }
 
@@ -145,7 +146,7 @@ define([
 
 
   Cart.prototype.afterChange = function () {
-    if (this.afterChangeCallback) this.afterChangeCallback(this);
+    this.afterChangeCallback && this.afterChangeCallback(this);
   }
 
 

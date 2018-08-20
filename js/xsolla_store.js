@@ -1,3 +1,7 @@
+
+var debug = debug || true; //вывод всяких сообщений в консоль
+
+
 requirejs.config({
   baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/'
 });
@@ -6,13 +10,13 @@ define([
   'xsolla_store_shop'
 ], function (Shop) {
 
-   function Xsolla (mainSettings, callbackFunc) {
-
-    this.callbacks = [
+   function Xsolla (mainSettings) {
+     this._mainSettings = this.mergeSettings(mainSettings);
+    this.callbacks = this._mainSettings['callbacks'];
+    this.callbacksArr = [
       [this.setPreloader, 'hide']
     ];
     this.preloader = this.setPreloader();
-    this._mainSettings = this.mergeSettings(mainSettings);
     this._shopSettings = this._mainSettings['shopSettings'];
     this._cartSettings = this._mainSettings['cartSettings'];
     // this._shopSettings._cartSettings.paystation.access_data.settings.project_id = this.load('project_id');
@@ -24,7 +28,7 @@ define([
     this._shopSettings.paystation.access_data = this.access_data;
     this.showSets();
     // this.shop = shop;
-    this.loadFromPs(callbackFunc);
+    this.loadFromPs();
     // this.theme = 'xxx_theme_light';
     this.theme = this.load('theme') || this._shopSettings['theme'] || null;
     this.applyTheme();
@@ -66,7 +70,7 @@ define([
     if (addNewFunc) {
       //TODO: метот добавления функций
     } else {
-      this.callbacks.forEach(function (item, i) {
+      this.callbacksArr.forEach(function (item, i) {
         if (typeof item === "object") {
           item[0](thiss, item[1] || null, item[2] || null, item[3] || null)
         } else {
@@ -75,7 +79,6 @@ define([
       })
 
     }
-
   }
 
 
@@ -161,10 +164,11 @@ define([
 
 
 
-  Xsolla.prototype.loadFromPs = function (callbackFunc) {
+  Xsolla.prototype.loadFromPs = function (storeCreatedCallback) {
     var thiss = this;
     //Запрос за итемами
-    this.getVirtualItems(callbackFunc);
+    // this.getVirtualItems(storeCreatedCallback);
+    this.getVirtualItems();
   }
 
 
@@ -352,7 +356,7 @@ define([
 
 
 
-  Xsolla.prototype.getVirtualItems = function (callbackFunc, callbackF, callbackP1, callbackP2) {
+  Xsolla.prototype.getVirtualItems = function (callbackF, callbackP1, callbackP2) {
     access_data = this._shopSettings['paystation']['access_data'];
     thiss = this;
 
@@ -363,7 +367,7 @@ define([
         callbackF(thiss, callbackP1, callbackP2);
       }
       // document.querySelector('.prettyprint').innerHTML = JSON.stringify(data['groups'][0]['virtual_items']);
-      thiss.createShop(thiss._shopSettings, callbackFunc);
+      thiss.createShop(thiss._shopSettings);
 
       return;
     }
@@ -392,7 +396,7 @@ define([
           callbackF(thiss, callbackP1, callbackP2);
         }
         // document.querySelector('.prettyprint').innerHTML = JSON.stringify(data['groups'][0]['virtual_items']);
-        thiss.createShop(thiss._shopSettings, callbackFunc);
+        thiss.createShop(thiss._shopSettings);
 
 
         thiss.afterLoadCallbacks();
@@ -408,11 +412,11 @@ define([
 
 
 
-  Xsolla.prototype.createShop = function (shopSettings, callbackFunc) {
+  Xsolla.prototype.createShop = function (shopSettings) {
     if (typeof shop !== 'object') {
-      this.shop = new Shop(shopSettings, this); //TODO: разобраться с передачей коллбека
+      this.shop = new Shop(this, shopSettings); //TODO: разобраться с передачей коллбека
     }
-    callbackFunc && callbackFunc();
+    this.callbacks['callbackAfterStore'] && this.callbacks['callbackAfterStore']();
     // this.shop._settings._cartSettings.paystation.access_data = this.access_data;
   }
 
