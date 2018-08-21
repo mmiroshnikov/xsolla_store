@@ -3,7 +3,7 @@ define([
 ], function () {
 
 
-    function RenderedGood(parentCart, dataItem, template) {
+    function CartGood(parentCart, dataItem, template) {
       this._cart = parentCart;
       this._shop = parentCart._shop;
       this.template = template;
@@ -25,7 +25,7 @@ define([
 
 
 
-    RenderedGood.prototype.renderGood = function () {
+    CartGood.prototype.renderGood = function () {
       var newEl = this.template.cloneNode(true);
       newEl.classList.remove('hidden');
       newEl.dataset.template = 'false';
@@ -149,7 +149,7 @@ define([
 
 
 
-    RenderedGood.prototype._onHoverOn = function () {
+    CartGood.prototype._onHoverOn = function () {
       if (isMobile) return;
       if ($(this.element).parent().find('[data-kart-good=\'q_plus\']')) {
         //Vertical controls
@@ -169,7 +169,7 @@ define([
 
 
 
-    RenderedGood.prototype._onHoverOff = function () {
+    CartGood.prototype._onHoverOff = function () {
       if (isMobile) return;
       if (!this.element.classList.contains('item_active')) {
 
@@ -198,7 +198,7 @@ define([
 
 
 
-    RenderedGood.prototype._onClick = function (trgt) {
+    CartGood.prototype._onClick = function (trgt) {
       if ($(trgt).attr('data-kart-good') === 'q_plus' || $(trgt).parent().attr('data-kart-good') === 'q_plus') {
         this._cart.update(this.dataItem['sku'], this.q + 1)
       }
@@ -214,7 +214,7 @@ define([
 
 
 
-    RenderedGood.prototype.destroy = function () {
+    CartGood.prototype.destroy = function () {
       this['element'].removeEventListener('click', this['element']._onClick);
       this['element'].removeEventListener('mouseover', this['element']._onClick);
       this['element'].removeEventListener('mouseout', this['element']._onClick);
@@ -226,7 +226,7 @@ define([
 
 
 
-    RenderedGood.prototype.updateControls = function () {
+    CartGood.prototype.updateControls = function () {
       //Change Minus to Delete
       if (this.q > 1) {
         $(this['element']).find('[data-kart-good=\'delete\']').addClass('disabled');
@@ -242,7 +242,7 @@ define([
 
 
 
-    RenderedGood.prototype.updateQ = function () {
+    CartGood.prototype.updateQ = function () {
       $(this['element']).find('[data-kart-good=\'q_q\']')[0].textContent = this['q'];
       $(this['element']).find('[data-kart-good=\'amount\']')[0].innerHTML = this._shop.formattedPrice(this.price * this.q);
       this.updateControls();
@@ -275,6 +275,6 @@ define([
     }
 
 
-  return RenderedGood;
+  return CartGood;
 
   });

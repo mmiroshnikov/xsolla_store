@@ -1,11 +1,11 @@
 define([
   'xsolla_store_shop_good_pop',
-], function (ShopGoodPop) {
+], function (ShopGoodPopPop) {
 
 
 
 
-  function ShopGood(_grid, dataItem) {
+  function ShopGoodPop(_grid, dataItem) {
     this._grid = _grid;
     this._shop = _grid._shop;
     this._xsolla = _grid._shop._xsolla;
@@ -13,34 +13,34 @@ define([
     this.sku = this.dataItem['sku'];
     this.container;
     this.template = this.getTemplate();
-    this.element = this.renderShopGood();
+    this.element = this.renderShopGoodPop();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
-    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop : null;
+    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPopPop : null;
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
   }
 
-  ShopGood.prototype.createPop = function () {
+  ShopGoodPop.prototype.createPop = function () {
 
 
   }
 
 
 
-  ShopGood.prototype.getTemplate = function () {
+  ShopGoodPop.prototype.getTemplate = function () {
     this.container = $(this._grid.element).find(':attr(\'^data-good-template\')')[0].parentElement;
     return $(this._grid.element).find(':attr(\'^data-good-template\')')[0];
   }
 
 
 
-  ShopGood.prototype.getFavorite = function () {
+  ShopGoodPop.prototype.getFavorite = function () {
     return this._shop._data[this.sku]['is_favorite'] ? true : false;
   }
 
 
-  ShopGood.prototype.renderShopGood = function () {
+  ShopGoodPop.prototype.renderShopGoodPop = function () {
     var thiss = this;
     var newEl = this.template.cloneNode(true);
     newEl.dataset.idd = this.dataItem.sku;
@@ -129,7 +129,7 @@ define([
 
 
 
-  ShopGood.prototype._onClick = function (trgt) {
+  ShopGoodPop.prototype._onClick = function (trgt) {
     // var addBut = $(this.element).find(':attr(\'^data-kart-add\')');
     // if (trgt === addBut[0] || trgt.parentElebuildDatament === addBut[0]) {
     (this._grid._shop.cart) && this._grid._shop.cart.update(this.dataItem['sku'], '+');
@@ -145,6 +145,6 @@ define([
 
 
 
-  return ShopGood;
+  return ShopGoodPop;
 
 });

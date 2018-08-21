@@ -1,8 +1,8 @@
 define([
   'xsolla_store_shop',
-  'xsolla_store_shop_renderedgood',
+  'xsolla_store_shop_cart_good',
   'widget.min',
-], function (Shop, RenderedGood, XPayStationWidget) {
+], function (Shop, CartGood, XPayStationWidget) {
 
 
 
@@ -16,7 +16,7 @@ define([
 
     this.offvalue = false;
     this.paystation = this._cartSettings['paystation'] || {};
-    this.renderedGoods = [];
+    this.CartGoods = [];
     this.q = 0;
     this.total = 0;
     this.discount = 0;
@@ -333,11 +333,11 @@ define([
 
 
   Cart.prototype.clearCart = function () {
-    for (var i = 0; i < this.renderedGoods.length; i++) {
-      var oneGood = this.renderedGoods[i];
+    for (var i = 0; i < this.CartGoods.length; i++) {
+      var oneGood = this.CartGoods[i];
       oneGood.destroy();
     }
-    this.renderedGoods.length = 0;
+    this.CartGoods.length = 0;
     this.inCart.length = 0;
     this.calculateTotal();
     this.iconCount();
@@ -457,8 +457,8 @@ define([
         this.inCart = _.compact(this.inCart);
       }
     } else {
-      for (var i = 0; i < this.renderedGoods.length; i++) {
-        this.changeAmountHtml(this.renderedGoods[i]['dataItem']['sku'], 0)
+      for (var i = 0; i < this.CartGoods.length; i++) {
+        this.changeAmountHtml(this.CartGoods[i]['dataItem']['sku'], 0)
         if (debug) console.log('deleted');
       }
     }
@@ -545,10 +545,10 @@ define([
 
   Cart.prototype.render2data = function () {
     var dataFromRender;
-    if (this.renderedGoods && this.renderedGoods.length) {
+    if (this.CartGoods && this.CartGoods.length) {
       dataFromRender = [];
-      for (var i = 0; i < this.renderedGoods.length; i++) {
-        var el = this.renderedGoods[i];
+      for (var i = 0; i < this.CartGoods.length; i++) {
+        var el = this.CartGoods[i];
         dataFromRender.push(el.dataItem);
       }
     }
@@ -558,8 +558,8 @@ define([
   Cart.prototype.data2render = function () { //TODO: delete
     if (!this.inCart.length) return;
     for (i = 0; i < this.inCart.length; i++) {
-      var newEl = new RenderedGood(this, this.inCart[i], this.$template);
-      this.renderedGoods.push(newEl)
+      var newEl = new CartGood(this, this.inCart[i], this.$template);
+      this.CartGoods.push(newEl)
       this.appearOneGood(newEl);
     }
   }
@@ -569,8 +569,8 @@ define([
 
 
   Cart.prototype.drawAll = function () {
-    for (var i = 0; i < this.renderedGoods.length; i++) {
-      var newEl = this.renderedGoods[i];
+    for (var i = 0; i < this.CartGoods.length; i++) {
+      var newEl = this.CartGoods[i];
       this.appearOneGood(newEl);
     }
   }
@@ -581,8 +581,8 @@ define([
 
 
   Cart.prototype.drawOneGood = function (sku, amount) {
-    var newEl = new RenderedGood(this, {'sku': sku, 'amount': amount}, this.$template);
-    this.renderedGoods.push(newEl);
+    var newEl = new CartGood(this, {'sku': sku, 'amount': amount}, this.$template);
+    this.CartGoods.push(newEl);
     this.appearOneGood(newEl);
   }
 
@@ -615,10 +615,10 @@ define([
     var numb = this.data2skus(this.inCart).indexOf(goodSku);
     if (numb < 0) { return };
     if (newAmount) {
-      this.renderedGoods[numb]['q'] = newAmount;
-      this.renderedGoods[numb].updateQ();
+      this.CartGoods[numb]['q'] = newAmount;
+      this.CartGoods[numb].updateQ();
     } else {
-      this.deleteElement(this.renderedGoods[numb]);
+      this.deleteElement(this.CartGoods[numb]);
     }
   }
 
@@ -629,12 +629,12 @@ define([
 
 
 
-  Cart.prototype.deleteElement = function (renderedGood) {
-    var indToDel = this.renderedGoods.indexOf(renderedGood);
+  Cart.prototype.deleteElement = function (CartGood) {
+    var indToDel = this.CartGoods.indexOf(CartGood);
     if (indToDel < 0) return;
-    delete this.renderedGoods[indToDel];
-    this.renderedGoods = _.compact(this.renderedGoods);
-    renderedGood.destroy();
+    delete this.CartGoods[indToDel];
+    this.CartGoods = _.compact(this.CartGoods);
+    CartGood.destroy();
   }
 
 
@@ -642,17 +642,17 @@ define([
 
 
 
-  Cart.prototype.removeGood = function (renderedGood) {
+  Cart.prototype.removeGood = function (CartGood) {
     this.q--;
-    var skuToDelete = renderedGood.good['sku'];
+    var skuToDelete = CartGood.good['sku'];
     var changed = false;
     for (var u = 0; u < this.inCart.length; u++) {
       var oneSku = this.inCart[u];
       if (oneSku['sku'] === skuToDelete && !changed) { //Find sku in cart
         oneSku['amount']--;
         changed = true;
-        renderedGood.q--;
-        renderedGood.element = renderedGood.renderGood();
+        CartGood.q--;
+        CartGood.element = CartGood.renderGood();
       }
     }
   }

@@ -2901,7 +2901,7 @@ Cart.prototype.render2data = function () {
 Cart.prototype.data2render = function () { //TODO: delete
   if (!this.inCart.length) return;
   for (i = 0; i < this.inCart.length; i++) {
-    var newEl = new RenderedGood(this, this.inCart[i], this.$template);
+    var newEl = new CartGood(this, this.inCart[i], this.$template);
     this.renderedGoods.push(newEl)
     this.appearOneGood(newEl);
   }
