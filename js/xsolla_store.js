@@ -616,9 +616,6 @@ define([
 
 
 
-
-
-
   Xsolla.prototype.showSets = function (newproject, newGrids) {
     var thiss = this;
     if (newproject && newGrids) {
