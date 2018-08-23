@@ -2178,7 +2178,6 @@ Shop.prototype.addStaticPrices = function () {
     }
 
     //TODO: сделать логику oldprice и для ООП кнопок
-
     if (typ === 'image_url' || typ === 'image_url_custom') {
       //TODO: сделать картинки чтобы тоже
     } else if (typ === 'amount') {
