@@ -54,7 +54,7 @@ define([
       }
     } catch (e) { }
     if (this.dataItem.image_url_custom) {
-      $(newEl).find('[data-good=\'image_url\']')[0].style.backgroundImage = 'url(' + this.dataItem.image_url_custom + ')';
+      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + this.dataItem.image_url_custom + ')';
       // $(newEl).hover(
       //   function () {
       //     $(this).find('[data-kart-good=\'image_url\']').css('background-image', 'url(' + thiss.dataItem.image_url_custom_hover + ')')
