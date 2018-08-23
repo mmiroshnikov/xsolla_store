@@ -1355,7 +1355,6 @@ define([
 
 
 
-
   Shop.prototype.collectButtons = function () {
     //TODO: destroy previous
     var thiss = this;
