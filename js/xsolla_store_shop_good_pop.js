@@ -16,7 +16,7 @@ define([
     this.element = this.renderShopGoodPop();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
-    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPopPop : null;
+    // this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPopPop() : null;
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
   }
