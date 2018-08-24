@@ -16,7 +16,7 @@ define([
     this.element = this.renderShopGood();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
-    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop : null;
+    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this) : null;
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
   }
@@ -48,13 +48,25 @@ define([
     newEl.dataset.good = null;
     newEl.dataset.goodTemplate = null;
     newEl.dataset.template = null;
+
     try {
       if ($(newEl).find('[data-good=\'image_url\']')[0]) {
-        $(newEl).find('[data-good=\'image_url\']')[0].style.backgroundImage = 'url(' + this.dataItem['image_url'] + ')';
+        $(newEl).find('[data-good=\'image_url\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
       }
     } catch (e) { }
-    if (this.dataItem.image_url_custom) {
-      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + this.dataItem.image_url_custom + ')';
+
+    if ($(newEl).find('[data-good=\'image_url_custom\']').length && thiss.dataItem['image_url_custom']) {
+      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url_custom'] + ')';
+    }
+    if ($(newEl).find('[data-good=\'image_url_custom\']').length && !thiss.dataItem['image_url_custom']) {
+      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
+    }
+
+
+    // if ($(newEl).find('[data-good=\'image_url_custom\']').length) {
+    //   try {
+    //     $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem.image_url_custom + ')';
+    //   } catch (e) { }
       // $(newEl).hover(
       //   function () {
       //     $(this).find('[data-kart-good=\'image_url\']').css('background-image', 'url(' + thiss.dataItem.image_url_custom_hover + ')')
@@ -63,7 +75,11 @@ define([
       //     $(this).find('[data-kart-good=\'image_url\']').css('background-image', 'url(' + thiss.dataItem.image_url_custom + ')')
       //   },
       // );
-    }
+    // } else {
+    //   try {
+    //     $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
+    //   } catch (e) { }
+    // }
 
     $(newEl).find('[data-good=\'name\']')[0].innerHTML = this.dataItem['name'];
     $(newEl).find('[data-good=\'desc\']')[0].innerHTML = this.dataItem['description'];

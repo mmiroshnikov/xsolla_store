@@ -5,17 +5,17 @@ define([
 
 
 
-  function ShopGoodPop(_grid, dataItem) {
-    this._grid = _grid;
-    this._shop = _grid._shop;
-    this._xsolla = _grid._shop._xsolla;
-    this.dataItem = dataItem;
-    this.sku = this.dataItem['sku'];
-    this.container;
-    this.template = this.getTemplate();
-    this.element = this.renderShopGoodPop();
-    this._onClick = this._onClick.bind(this);
-    this.isFavorite = this.getFavorite();
+  function ShopGoodPop(_good) {
+    this._good = _good;
+    // this._shop = _grid._shop;
+    // this._xsolla = _grid._shop._xsolla;
+    // this.dataItem = dataItem;
+    // this.sku = this.dataItem['sku'];
+    // this.container;
+    // this.template = this.getTemplate();
+    // this.element = this.renderShopGoodPop();
+    // this._onClick = this._onClick.bind(this);
+    // this.isFavorite = this.getFavorite();
     // this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPopPop() : null;
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
