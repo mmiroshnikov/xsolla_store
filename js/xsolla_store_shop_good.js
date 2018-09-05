@@ -5,14 +5,14 @@ define([
 
 
 
-  function ShopGood(_grid, dataItem) {
+  function ShopGood(_grid, dataItem, template) {
     this._grid = _grid;
     this._shop = _grid._shop;
     this._xsolla = _grid._shop._xsolla;
     this.dataItem = dataItem;
     this.sku = this.dataItem['sku'];
     this.container;
-    this.template = this.getTemplate();
+    this.template = template || this.getTemplate();
     this.element = this.renderShopGood();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
@@ -58,8 +58,16 @@ define([
     if ($(newEl).find('[data-good=\'image_url_custom\']').length && thiss.dataItem['image_url_custom']) {
       $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url_custom'] + ')';
     }
+
     if ($(newEl).find('[data-good=\'image_url_custom\']').length && !thiss.dataItem['image_url_custom']) {
       $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
+    }
+
+    if ($(newEl).find('[data-good=\'youtube\']').length && thiss.dataItem['youtube']) {
+      var you = $(newEl).find('[data-good=\'youtube\']')[0];
+      // var iframe = document.createElement("iframe");
+      // you.setAttribute("src", "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
+      you.setAttribute("src", thiss.dataItem['youtube']);
     }
 
 
