@@ -121,6 +121,15 @@ define([
     this.onClick = this._onClick;
     var thiss = this;
 
+    $(newEl).on({
+      click: function (evt) {
+        var trgt = evt.target;
+        thiss.onClick(trgt);
+        // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
+      }
+  })
+
+
     // Add to Cart
     $(newEl).find(':attr(\'^data-kart-add\')').each(function (i, el) {
       el.addEventListener('click', function (evt) {
@@ -166,6 +175,11 @@ define([
     // if (trgt.classList.contains('k_delete') || trgt.parentElement.classList.contains('k_delete')) {
     //   this._shop.cart.update(this.dataItem['sku'], 0)
     // }
+    if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
+      if (this.pop) {
+        this.pop.el.classList.add('shown');
+      }
+    }
   }
 
 
