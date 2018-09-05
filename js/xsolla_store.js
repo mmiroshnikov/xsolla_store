@@ -1,5 +1,82 @@
 var debug = debug || true; //вывод всяких сообщений в консоль
 
+var mainSettings_default =  {
+  //Shop Settings
+  // 'defaultGrids': 'all', //TODO
+  'shopSettings': {
+    'paystation': {
+      'access_data': {
+        'user': {
+          'attributes': {
+            // 'promo': false,
+          }
+        },
+        'settings': {
+          'project_id': '',
+          'shipping_enabled': false,
+          'ui': {
+            'size': 'medium',
+            'theme': 'dark'
+          },
+        },
+        'purchase': {
+          'virtual_items': {
+            'items': []
+          }
+        }
+      },
+      'lightbox': {
+        'width': '740px',
+        'height': '685px',
+        'spinner': 'round',
+        'spinnerColor': '#cccccc',
+      }
+    },
+    'psInit': function () {
+      var s = document.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = '//static.xsolla.com/embed/paystation/1.0.7/widget.min.js';
+      var head = document.getElementsByTagName('head')[0];
+      head.appendChild(s);
+    },
+    'shopData': [], //Data from Xsolla Merchant. Ex.: http://xsolla.maiik.ru/phoenix_point/atari_json.html
+  },
+  // 'customAttrs': //array, //Custom Pictures array
+  //Cart Settings
+  'cartSettings': {
+    'indicatorShown': 'auto', //auto
+    'cartElements': {
+      'cartWrapper':        '.k',
+      'cartCounter':        '[data-kart=\'counter\']',
+      'cartIcon':           '[data-kart=\'icon\']',
+      'cartUL':             '[data-kart=\'ul\']',
+      'cartItemTemplate':   '[data-kart=\'template\']',
+      'cartAddGlow':        '[data-kart=\'glow\']',
+      'cartTotal':          '[data-kart=\'total\']',
+      'cartDiscountPrice':  '[data-kart=\'total_discount\']',
+      'cartOpenClass':      '[data-kart=\'open\']',
+      'cartCloseClass':     '[data-kart=\'close\']',
+      'cartCheckoutBut':    '[data-kart=\'checkout\']',
+      'cartClear':          '[data-kart=\'clear\']',
+      // 'cartAddBut':      ':attr(\'^data-kart-add\')',
+    },
+    'afterChange': typeof showCartNoti !== 'undefined' ? showCartNoti : null, //Callback when something changed in the cart
+    'cartAddAnimation': typeof cartAddAnimation !== 'undefined' ? cartAddAnimation : null,
+    'cartAddDiscount': typeof cartAddDiscount !== 'undefined' ? cartAddDiscount : null,
+    'cartOpenAnimation': typeof cartOpenAnimation !== 'undefined' ? cartOpenAnimation : null,
+    'cartCloseAnimation': typeof cartCloseAnimation !== 'undefined' ? cartCloseAnimation : null,
+    'cartShowAnim': false,
+    'cartHideAnim': false,
+    // 'currency': ['в‚Ѕ', 1],
+    'currency': ['$', 0],
+  }
+};
+
+
+
+
+
 
 requirejs.config({
   baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/'
@@ -9,8 +86,8 @@ define([
   'xsolla_store_shop'
 ], function (Shop) {
 
-   function Xsolla (mainSettings) {
-     this._mainSettings = this.mergeSettings(mainSettings);
+  function Xsolla (mainSettings) {
+    this._mainSettings = this.mergeSettings(mainSettings);
     this.callbacks = this._mainSettings['callbacks'];
     this.callbacksArr = [
       [this.setPreloader, 'hide']

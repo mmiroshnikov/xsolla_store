@@ -17,7 +17,7 @@ define([
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
     if (this._shop._shopSettings.shopPop) {
-      this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this) : null;
+      this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this, ShopGood) : null;
     }
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
@@ -91,9 +91,9 @@ define([
     //   } catch (e) { }
     // }
 
-    $(newEl).find('[data-good=\'name\']')[0].innerHTML = this.dataItem['name'];
-    $(newEl).find('[data-good=\'desc\']')[0].innerHTML = this.dataItem['description'];
-    $(newEl).find('[data-good=\'amount\']')[0].innerHTML = this._shop.formattedPrice(this.dataItem['amount']);
+    $(newEl).find('[data-good=\'name\']').html(this.dataItem['name']);
+    $(newEl).find('[data-good=\'desc\']').html(this.dataItem['description']);
+    $(newEl).find('[data-good=\'amount\']').html(this._shop.formattedPrice(this.dataItem['amount']));
 
     if (this.isFavorite) {
       $(newEl).find('[data-good=\'is_favorite\']').removeClass('x_off');
@@ -127,7 +127,7 @@ define([
         thiss.onClick(trgt);
         // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
       }
-  })
+    })
 
 
     // Add to Cart
@@ -178,6 +178,8 @@ define([
     if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
       if (this.pop) {
         this.pop.el.classList.add('shown');
+        $(this.pop.el).find('.item_pop_z').addClass('shown');
+        $(this.pop.el).find('.item_pop_b').addClass('shown');
       }
     }
   }
