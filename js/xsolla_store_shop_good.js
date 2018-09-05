@@ -16,7 +16,9 @@ define([
     this.element = this.renderShopGood();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
-    this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this) : null;
+    if (this._shop._shopSettings.shopPop) {
+      this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this) : null;
+    }
     // this._onHoverOn = this._onHoverOn.bind(this);
     // this._onHoverOff = this._onHoverOff.bind(this);
   }
@@ -156,7 +158,7 @@ define([
   ShopGood.prototype._onClick = function (trgt) {
     // var addBut = $(this.element).find(':attr(\'^data-kart-add\')');
     // if (trgt === addBut[0] || trgt.parentElebuildDatament === addBut[0]) {
-    (this._grid._shop.cart) && this._grid._shop.cart.update(this.dataItem['sku'], '+');
+    (this._shop.cart) && this._grid._shop.cart.update(this.dataItem['sku'], '+');
     // }
     // if (trgt.classList.contains('k_q_but_minus') || trgt.parentElement.classList.contains('k_q_but_minus')) {
     //   this._shop.cart.update(this.dataItem['sku'], this.q - 1)
