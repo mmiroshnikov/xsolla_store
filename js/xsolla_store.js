@@ -79,14 +79,19 @@ var mainSettings_default =  {
 
 
 requirejs.config({
-  baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/'
+  baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/',
+  paths: {
+    'fragbuilder': 'http://xsolla.maiik.ru/xsolla_store/libs/fragbuilder',
+  }
 });
 
 define([
-  'xsolla_store_shop'
+  'xsolla_store_shop',
+  // 'fragbuilder'
 ], function (Shop) {
 
-  function Xsolla (mainSettings) {
+  function Xsolla(mainSettings) {
+    // this.FragBuilder = FragBuilder;
     this._mainSettings = this.mergeSettings(mainSettings);
     this.callbacks = this._mainSettings['callbacks'];
     this.callbacksArr = [

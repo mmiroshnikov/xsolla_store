@@ -20,16 +20,20 @@ define([
 
   ShopGoodPop.prototype.addListenets = function () {
     var thiss = this;
+
+    //CLOSE
     $(this.el).find('.item_pop_z').on({
       click: function (evt) {
         $(thiss.el).find('.item_pop_z').removeClass('shown');
         $(thiss.el).find('.item_pop_b').removeClass('shown');
         setTimeout(function () {
           thiss.el.classList.remove('shown');
-
         },200)
         // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
       }
+
+      //OTHER CLICKS
+
   })
   }
 

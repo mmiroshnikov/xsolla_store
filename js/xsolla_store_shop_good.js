@@ -179,8 +179,11 @@ define([
     if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
       if (this.pop) {
         $(this.pop.el).addClass('shown');
-        $(this.pop.el).find('.item_pop_b').addClass('shown');
-        $(this.pop.el).find('.item_pop_z').addClass('shown');
+        var thiss = this;
+        setTimeout(function () {
+          $(thiss.pop.el).find('.item_pop_b').addClass('shown');
+          $(thiss.pop.el).find('.item_pop_z').addClass('shown');
+        }, 20)
       }
     }
   }

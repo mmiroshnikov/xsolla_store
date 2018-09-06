@@ -1,6 +1,7 @@
 define([
   'xsolla_store_shop_good',
-], function (ShopGood) {
+  'fragbuilder',
+], function (ShopGood, FragBuilder) {
 
   // function ShopGrid(parentShop, typeName, typeVal) {
   function ShopGrid(parentShop, grp) {
@@ -24,7 +25,47 @@ define([
   ShopGrid.prototype.dowSomethingWithPopups = function () {
     if (this._shop._shopSettings.shopPop !== 'swiper' || !this.goodPopups) return;
 
+    var sw_c = document.createElement('div');
+    sw_c.classList.add('swiper-container');
+    var sw_c = document.createElement('div');
+    sw_c.classList.add('swiper-container');
 
+
+    var frag = {
+      'div': {
+          'class': 'container',
+          'id': 'mycontainer',
+          'children': {
+              'div': {
+                  'class': 'bar',
+                  'style': {
+                      'color': 'green'
+                  },
+                  'text': 'Hello World!',
+                  'children': {
+                      'div': {
+                          'style': {
+                              'height': '2em',
+                              'width': '100%',
+                              'background-color': '#666'
+                          },
+                          'children': {
+                              'a': {
+                                  'href': 'http://google.ca',
+                                  'text': 'google'
+                              }
+                          }
+                      }
+                  }
+              },
+              'footer': {
+                  'class': 'foo'
+              }
+          }
+      }
+    };
+    var newHTML = new FragBuilder(frag);
+    this.element.appendChild(newHTML.el);
 
   }
 
