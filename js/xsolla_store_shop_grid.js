@@ -54,13 +54,6 @@ define([
   ShopGrid.prototype.createPopSwiper = function () {
     // if (this._shop._shopSettings.shopPop !== 'swiper' || !this.goodPopups) return;
 
-    var sw_c = document.createElement('div');
-    sw_c.classList.add('swiper-container');
-    var sw_c = document.createElement('div');
-    sw_c.classList.add('swiper-container');
-
-
-
     var swiperCont = [
       {
         'div': {
@@ -154,6 +147,21 @@ define([
       // centeredSlides: true
     });
 
+
+
+    var thiss = this;
+    //CLOSE
+    $('.swiper-slide--pop').not('.item_pop_b').on({
+      click: function (evt) {
+        $(newSwiperCont).find('.item_pop_z').removeClass('shown');
+        $(newSwiperCont).find('.item_pop_b').removeClass('shown');
+        setTimeout(function () {
+          newSwiperCont.classList.remove('shown');
+        },200)
+        // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
+      }
+      //OTHER CLICKS
+    })
 
   }
 

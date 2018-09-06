@@ -31,10 +31,9 @@ define([
         },200)
         // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
       }
-
       //OTHER CLICKS
+    })
 
-  })
   }
 
 
