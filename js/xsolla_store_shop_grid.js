@@ -27,7 +27,7 @@ define([
   }
 
 
-  ShopGrid.prototype.createSlider = function () {
+  ShopGrid.prototype.createSwiper = function () {
 
     // this._shop._settings.callbacks['callbackAfterStore'] && this._shop._settings.callbacks['callbackAfterStore']();
       var toDeleteW = $('#swiper_featured').find('.swiper-wrapper.hidden');
@@ -51,9 +51,7 @@ define([
 
   }
 
-
-
-  ShopGrid.prototype.createPopSlider = function () {
+  ShopGrid.prototype.createPopSwiper = function () {
     // if (this._shop._shopSettings.shopPop !== 'swiper' || !this.goodPopups) return;
 
     var sw_c = document.createElement('div');
@@ -62,102 +60,100 @@ define([
     sw_c.classList.add('swiper-container');
 
 
-    var swiperCont = {
-      'div': {
-          'class': 'swiper-container',
-          'id': 'xsolla_store_pops',
-          'children': {
-              'div': {
-                  'class': 'swiper-swrapper',
-                  // 'style': {
-                  //     'color': 'green'
-                  // },
-                  // 'text': 'Hello World!',
-                  'children': {
-                      'swiper-slide': {
-                        'text': ''
-                      }
-                  }
-              },
-              'div': {
-                  'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-pagination'
-              },
-          }
-      }
-    };
-    // var newSwiperCont = new FragBuilder(swiperCont);
-    // newSwiperCont = newSwiperCont;
 
-    var swiperCont = {
-      'div': {
-          'class': 'swiper-container',
-          'id': 'xsolla_store_pops',
-          'children': {
+    var swiperCont = [
+      {
+        'div': {
+          'class': 'item_pop shown',
+          'children': [{
               'div': {
-                  'class': 'swiper-swrapper',
-                  // 'style': {
-                  //     'color': 'green'
-                  // },
-                  // 'text': 'Hello World!',
-                  'children': {
-                      'swiper-slide': {
-                        'text': ''
-                      }
+                  'class': 'item_pop_z shown',
+                  'text': ''
+              }
+            },
+            {
+              'div': {
+                'class': 'swiper-container swiper-container--pop',
+                'id': 'xsolla_store_pops',
+                'children': [{
+                  'div': {
+                    'class': 'swiper-wrapper',
+                    //'style': {
+                    // 'color': 'green'
+                    //},
+                    //'text': 'Hello World!',
                   }
-              },
-              'div': {
-                  'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-pagination'
-              },
-          }
-      }
-    };
-    // var newSwiperCont = new FragBuilder(swiperCont);
-
-    var swiperSlide = {
-      'div': {
-          'class': 'swiper-container',
-          'id': 'xsolla_store_pops',
-          'children': {
-              'div': {
-                  'class': 'swiper-swrapper',
-                  // 'style': {
-                  //     'color': 'green'
-                  // },
-                  // 'text': 'Hello World!',
-                  'children': {
-                      'swiper-slide': {
-                        'text': ''
-                      }
+                },
+                {
+                  'div': {
+                    'class': 'swiper-button-prev'
                   }
-              },
-              'div': {
-                  'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-button-prev'
-              },
-              'div': {
-                'class': 'swiper-pagination'
-              },
-          }
+                },
+                {
+                  'div': {
+                    'class': 'swiper-button-prev'
+                  }
+                },
+                {
+                  'div': {
+                    'class': 'swiper-pagination'
+                  }
+                }
+                ]
+            },
+          }]
+        }
       }
-    };
-    // var newSwiperSlide = new FragBuilder(swiperSlide);
+    ];
 
-    // newSwiperCont.querySelector('.swiper-wrapper').appendChild(newSwiperCont);
-    // this.element.appendChild(newSwiperCont);
+
+    var newSwiperCont = new FragBuilder(swiperCont);
+    newSwiperCont = newSwiperCont.el['children'][0];
+
+    this.element.appendChild(newSwiperCont);
+
+
+    var slides = this.goodPopups;
+
+    Object.keys(slides).forEach(function (popName, i) {
+
+      var swiperSlide = [{
+        'div': {
+          'class': 'swiper-slide swiper-slide--pop',
+          'style': {
+            'width': '100%'
+          },
+          'children': [
+            {
+              'div': {
+                'class': 'item_pop_b shown'
+              }
+            }
+          ]
+        }
+      }];
+      var newSwiperSlide = new FragBuilder(swiperSlide);
+      newSwiperSlide = newSwiperSlide.el['children'][0];
+
+      newSwiperCont.querySelector('.swiper-wrapper').appendChild(newSwiperSlide);
+      var oneSlide = slides[popName];
+      $(oneSlide.el.querySelector('.item_container')).detach().appendTo(newSwiperSlide.querySelector('.item_pop_b'));
+
+    })
+
+
+    var popSwiper = new Swiper('#xsolla_store_pops', {
+      slidesPerView: 1,
+      spaceBetween: 0,
+      // initialSlide: 1,
+      // setWrapperSize: true,
+      nextButton: '.swiper-button-next',
+      prevButton: '.swiper-button-prev',
+      // direction: 'horizontal',
+      // loop: true, //no loop in controlled mode
+      centeredSlides: true
+    });
+
 
   }
 
