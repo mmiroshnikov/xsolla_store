@@ -1,7 +1,8 @@
 define([
   'xsolla_store_shop_good',
+  'swiper',
   'fragbuilder'
-], function (ShopGood, FragBuilder) {
+], function (ShopGood, Swiper, FragBuilder) {
 
   // function ShopGrid(parentShop, typeName, typeVal) {
   function ShopGrid(parentShop, grp) {
@@ -28,8 +29,25 @@ define([
 
   ShopGrid.prototype.createSlider = function () {
 
-    this._shop._settings.callbacks['callbackAfterStore'] && this._shop._settings.callbacks['callbackAfterStore']();
+    // this._shop._settings.callbacks['callbackAfterStore'] && this._shop._settings.callbacks['callbackAfterStore']();
+      var toDeleteW = $('#swiper_featured').find('.swiper-wrapper.hidden');
+      toDeleteW[0].parentElement.removeChild(toDeleteW[0]);
 
+      var toDeleteS = $('#swiper_featured').find('.swiper-slide.hidden');
+      toDeleteS[0].parentElement.removeChild(toDeleteS[0]);
+
+
+      var mySwiper = new Swiper('#swiper_featured', {
+        // slidesPerView: 'auto',
+        spaceBetween: 0,
+        // initialSlide: 1,
+        setWrapperSize: true,
+        nextButton: '.swiper-button-next',
+        prevButton: '.swiper-button-prev',
+        // direction: 'horizontal',
+        // loop: true, //no loop in controlled mode
+        // centeredSlides: true
+      });
 
   }
 
