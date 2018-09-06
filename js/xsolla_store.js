@@ -80,9 +80,9 @@ var mainSettings_default =  {
 
 requirejs.config({
   baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/',
-  paths: {
-    'fragbuilder': 'http://xsolla.maiik.ru/xsolla_store/libs/fragbuilder',
-  }
+  // paths: {
+  //   'fragbuilder': 'http://xsolla.maiik.ru/xsolla_store/libs/fragbuilder',
+  // }
 });
 
 define([
@@ -91,7 +91,7 @@ define([
 ], function (Shop) {
 
   function Xsolla(mainSettings) {
-    // this.FragBuilder = FragBuilder;
+    // this.FragBuilder;
     this._mainSettings = this.mergeSettings(mainSettings);
     this.callbacks = this._mainSettings['callbacks'];
     this.callbacksArr = [
@@ -494,7 +494,7 @@ define([
     if (typeof shop !== 'object') {
       this.shop = new Shop(this, shopSettings); //TODO: разобраться с передачей коллбека
     }
-    this.callbacks['callbackAfterStore'] && this.callbacks['callbackAfterStore']();
+    // this.callbacks['callbackAfterStore'] && this.callbacks['callbackAfterStore']();
     // this.shop._settings._cartSettings.paystation.access_data = this.access_data;
   }
 

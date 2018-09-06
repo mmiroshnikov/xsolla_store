@@ -36,6 +36,6 @@ define([
     return tree;
   }
 
-  return FragBuilder;
+  return FragBuilder.el;
 
 });
