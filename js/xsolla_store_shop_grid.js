@@ -91,7 +91,7 @@ define([
                 },
                 {
                   'div': {
-                    'class': 'swiper-button-prev'
+                    'class': 'swiper-button-next'
                   }
                 },
                 {
@@ -121,7 +121,7 @@ define([
         'div': {
           'class': 'swiper-slide swiper-slide--pop',
           'style': {
-            'width': '100%'
+            // 'width': '100%'
           },
           'children': [
             {
@@ -144,14 +144,14 @@ define([
 
     var popSwiper = new Swiper('#xsolla_store_pops', {
       slidesPerView: 1,
-      spaceBetween: 0,
+      // spaceBetween: 0,
       // initialSlide: 1,
-      // setWrapperSize: true,
+      setWrapperSize: true,
       nextButton: '.swiper-button-next',
       prevButton: '.swiper-button-prev',
       // direction: 'horizontal',
       // loop: true, //no loop in controlled mode
-      centeredSlides: true
+      // centeredSlides: true
     });
 
 
