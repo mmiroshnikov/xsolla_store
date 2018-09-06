@@ -16,6 +16,7 @@ define([
     this.element = this.renderShopGood();
     this._onClick = this._onClick.bind(this);
     this.isFavorite = this.getFavorite();
+    this.pop = null;
     if (this._shop._shopSettings.shopPop) {
       this.pop = this._shop._shopSettings['shopPop'] ? new ShopGoodPop(this, ShopGood) : null;
     }
@@ -177,9 +178,9 @@ define([
     // }
     if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
       if (this.pop) {
-        this.pop.el.classList.add('shown');
-        $(this.pop.el).find('.item_pop_z').addClass('shown');
+        $(this.pop.el).addClass('shown');
         $(this.pop.el).find('.item_pop_b').addClass('shown');
+        $(this.pop.el).find('.item_pop_z').addClass('shown');
       }
     }
   }
