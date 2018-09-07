@@ -575,7 +575,7 @@ function Shop(settings, _parent) {
     this.addStaticPrices();
   } else { //Shop-shop
     this.groups = this.getGroups();
-    this.gridsArray = [];
+    this.gridsArray = {};
     if (this._shopSettings['defaultGrids'] === 'all' || !this._shopSettings['defaultGrids']) { //Все категории
       this.groups.forEach(function (group) {
         this.createGrid(group);
@@ -592,7 +592,7 @@ function Shop(settings, _parent) {
 
         } else {
 
-          this.gridsArray.push(new ShopGrid(this, oneGridInfo));
+          this.gridsArray[oneGridInfo['groupId']] = new ShopGrid(this, oneGridInfo);
           butNotArray.push(oneGridInfo['groupId'])
         }
 
@@ -1905,13 +1905,13 @@ ShopGrid.prototype.getShopGoodTemplate = function (type, val) {
 ShopGrid.prototype.getGridTemplate = function () {
   var tmpl;
   if (!this._group['template'] || this._group['template'] === 'default') {
-    tmpl = $('[data-good-template=\'' + 'default' + '\']')[0].parentElement; //Нахождит дефолтный
+    tmpl = $('[data-good=\'' + 'default' + '\']')[0].parentElement; //Нахождит дефолтный
   } else {
     // var templateName = this._shop._settings.shopSettings.gridDesign[type];
     var templateName = this._group['template'];
 
-    tmpl = $('[data-good-template=\'' + templateName + '\']').closest('[data-shop-grid=\'template\']')[0] ||
-           $('[data-good-template=\'' + templateName + '\']')[0].parentElement;
+    tmpl = $('[data-good=\'' + templateName + '\']').closest('[data-shop-grid=\'template\']')[0] ||
+           $('[data-good=\'' + templateName + '\']')[0].parentElement;
   }
 
   return tmpl;
@@ -1954,8 +1954,8 @@ function ShopGood(_grid, dataItem) {
 
 
 ShopGood.prototype.getTemplate = function () {
-  this.container = $(this._grid.element).find(':attr(\'^data-good-template\')')[0].parentElement;
-  return $(this._grid.element).find(':attr(\'^data-good-template\')')[0];
+  this.container = $(this._grid.element).find('[data-good=\'template\']')[0].parentElement;
+  return $(this._grid.element).find('[data-good=\'template\']')[0];
 }
 
 

@@ -29,7 +29,7 @@ define([
       this.addStaticPrices();
     } else { //Shop-shop
       this.groups = this.getGroups();
-      this.gridsArray = [];
+      this.gridsArray = {};
       if (this._shopSettings['defaultGrids'] === 'all' || !this._shopSettings['defaultGrids']) { //Все категории
         this.groups.forEach(function (group) {
           this.createGrid(group);
@@ -46,7 +46,7 @@ define([
 
           } else {
 
-            this.gridsArray.push(new ShopGrid(this, oneGridInfo));
+            this.gridsArray[oneGridInfo['groupId']] = new ShopGrid(this, oneGridInfo);
             butNotArray.push(oneGridInfo['groupId'])
           }
 
@@ -75,8 +75,7 @@ define([
     var groupName = grp['name'];
     var oneGridInfo = {};
     oneGridInfo['groupId'] = groupId;
-
-    this.gridsArray.push(new ShopGrid(this, oneGridInfo));
+    this.gridsArray[oneGridInfo['groupId']] = new ShopGrid(this, oneGridInfo);
   }
 
 
