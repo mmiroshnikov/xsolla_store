@@ -57,7 +57,8 @@ define([
     var swiperCont = [
       {
         'div': {
-          'class': 'item_pop shown',
+          'class': 'item_pop',
+          'id': 'xsolla_store_pops',
           'children': [{
               'div': {
                   'class': 'item_pop_z shown',
@@ -67,7 +68,7 @@ define([
             {
               'div': {
                 'class': 'swiper-container swiper-container--pop',
-                'id': 'xsolla_store_pops',
+                'id': 'xsolla_store_pops_swiper',
                 'children': [{
                   'div': {
                     'class': 'swiper-wrapper',
@@ -135,7 +136,7 @@ define([
     })
 
 
-    var popSwiper = new Swiper('#xsolla_store_pops', {
+    this.popSwiper = new Swiper('#xsolla_store_pops_swiper', {
       slidesPerView: 1,
       // spaceBetween: 0,
       // initialSlide: 1,
@@ -164,6 +165,20 @@ define([
     })
 
   }
+
+  ShopGrid.prototype.showPopup = function (slideToNumber) {
+
+    var newSwiperCont = $('#xsolla_store_pops')[0];
+
+
+    newSwiperCont.classList.add('shown');
+    setTimeout(function () {
+      $(newSwiperCont).find('.item_pop_z').addClass('shown');
+      $(newSwiperCont).find('.item_pop_b').addClass('shown');
+    },20)
+    this.popSwiper.slideTo(slideToNumber, 0); //, speed, runCallbacks
+  }
+
 
   ShopGrid.prototype.getHeader = function () {
     var name;
@@ -249,9 +264,9 @@ define([
 
     var allGoods = {};
 
-    this._dataArr.forEach(function (sku) {
+    this._dataArr.forEach(function (sku, i) {
       var dataItem = this._shop._data[sku];
-      var newGood = new ShopGood(this, dataItem)
+      var newGood = new ShopGood(this, dataItem, null, i)
       newGood.container.appendChild(newGood.element);
       if (newGood.pop) {
         if (!this.goodPopups) this.goodPopups = {};

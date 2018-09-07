@@ -5,7 +5,8 @@ define([
 
 
 
-  function ShopGood(_grid, dataItem, template) {
+  function ShopGood(_grid, dataItem, template, position) {
+    this.position = position || 0; //позиция в гриде
     this._grid = _grid;
     this._shop = _grid._shop;
     this._xsolla = _grid._shop._xsolla;
@@ -176,14 +177,23 @@ define([
     // if (trgt.classList.contains('k_delete') || trgt.parentElement.classList.contains('k_delete')) {
     //   this._shop.cart.update(this.dataItem['sku'], 0)
     // }
-    if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
-      if (this.pop) {
-        $(this.pop.el).addClass('shown');
-        var thiss = this;
-        setTimeout(function () {
-          $(thiss.pop.el).find('.item_pop_b').addClass('shown');
-          $(thiss.pop.el).find('.item_pop_z').addClass('shown');
-        }, 20)
+    if (this._shop._shopSettings.shopPop === 'simple') {
+      if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
+        if (this.pop) {
+          $(this.pop.el).addClass('shown');
+          var thiss = this;
+          setTimeout(function () {
+            $(thiss.pop.el).find('.item_pop_b').addClass('shown');
+            $(thiss.pop.el).find('.item_pop_z').addClass('shown');
+          }, 20)
+        }
+      }
+    }
+
+
+    if (this._shop._shopSettings.shopPop === 'swiper') {
+      if (trgt.classList.contains('x_pop') || trgt.parentElement.classList.contains('x_pop')) {
+        this._grid.showPopup(this.position);
       }
     }
   }
