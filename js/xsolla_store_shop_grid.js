@@ -39,11 +39,11 @@ define([
 
       var mySwiper = new Swiper('#swiper_featured', {
         // slidesPerView: 'auto',
-        spaceBetween: 0,
+        // spaceBetween: 0,
         // initialSlide: 1,
-        setWrapperSize: true,
-        nextButton: '.swiper-button-next',
-        prevButton: '.swiper-button-prev',
+        // setWrapperSize: true,
+        nextButton: '.swiper-button-next-m',
+        prevButton: '.swiper-button-prev-m',
         // direction: 'horizontal',
         // loop: true, //no loop in controlled mode
         // centeredSlides: true
@@ -54,84 +54,108 @@ define([
   ShopGrid.prototype.createPopSwiper = function () {
     // if (this._shop._shopSettings.shopPop !== 'swiper' || !this.goodPopups) return;
 
+
+
+    //Create Swiper Cont————————————————————————
     var swiperCont = [
       {
         'div': {
-          'class': 'item_pop',
+          'class': 'item_xy',
           'id': 'xsolla_store_pops',
           'children': [{
-              'div': {
-                  'class': 'item_pop_z',
-                  'text': ''
-              }
-            },
-            {
-              'div': {
-                  'class': 'item_pop_z item_pop_x',
-                  'text': 'close'
-              }
-            },
-            {
-              'div': {
-                'class': 'swiper-container swiper-container--pop',
-                'id': 'xsolla_store_pops_swiper',
-                'children': [{
+            'div': {
+              'class': 'item_pop shown',
+              'children': [{
                   'div': {
-                    'class': 'swiper-wrapper',
-                    //'style': {
-                    // 'color': 'green'
-                    //},
-                    //'text': 'Hello World!',
+                      'class': 'item_pop_z popup_close',
+                      'text': ''
                   }
                 },
                 {
                   'div': {
-                    'class': 'swiper-button-prev'
+                      'class': 'item_pop_x popup_close',
+                      'text': 'close'
                   }
                 },
                 {
                   'div': {
-                    'class': 'swiper-button-next'
-                  }
+                    'class': 'swiper-container swiper-container--pop',
+                    'id': 'xsolla_store_pops_swiper',
+                    'children': [{
+                      'div': {
+                        'class': 'swiper-wrapper',
+                        //'style': {
+                        // 'color': 'green'
+                        //},
+                        //'text': 'Hello World!',
+                      }
+                    },
+                    {
+                      'div': {
+                        'class': 'swiper-button-prev-m'
+                      }
+                    },
+                    {
+                      'div': {
+                        'class': 'swiper-button-next-m'
+                      }
+                    },
+                    {
+                      'div': {
+                        'class': 'swiper-pagination'
+                      }
+                    }
+                    ]
                 },
-                {
-                  'div': {
-                    'class': 'swiper-pagination'
-                  }
-                }
-                ]
-            },
-          }]
+              }]
+            }
+          }
+          ]
         }
       }
     ];
-
-
     var newSwiperCont = new FragBuilder(swiperCont);
     newSwiperCont = newSwiperCont.el['children'][0];
+    document.body.appendChild(newSwiperCont);
 
-    this.element.appendChild(newSwiperCont);
 
+
+
+    //Create Slides————————————————————————
 
     var slides = this.goodPopups;
-
     Object.keys(slides).forEach(function (popName, i) {
-
-      var swiperSlide = [{
-        'div': {
-          'class': 'swiper-slide swiper-slide--pop',
-          'style': {
-            // 'width': '100%'
-          },
-          'children': [
-            {
+      var swiperSlide = [
+        {
+          'div': {
+            'class': 'swiper-slide popup_close',
+            'id': 'xsolla_store_pops',
+            'children': [{
               'div': {
-                'class': 'item_pop_b shown'
+                'class': 'item_xy shown',
+                'children': [{
+                  'div': {
+                    'class': 'item_c',
+                    'style': {
+                      // 'width': '100%'
+                    },
+                    'children': [{
+                      'div': {
+                        'class': 'item_pop_b'
+                      }
+                    }]
+                  }
+                }]
               }
-            }
-          ]
+
+            }]
+          }
         }
-      }];
+
+
+
+
+      ];
       var newSwiperSlide = new FragBuilder(swiperSlide);
       newSwiperSlide = newSwiperSlide.el['children'][0];
 
@@ -142,33 +166,53 @@ define([
     })
 
 
+
+    //Create Swiper————————————————————————
+    //Clean css
+    $(newSwiperCont).css({
+      'opacity': 0,
+      'pointer-events': 'none',
+      'display':'flex'
+    });
     this.popSwiper = new Swiper('#xsolla_store_pops_swiper', {
       slidesPerView: 1,
       // spaceBetween: 0,
       // initialSlide: 1,
       setWrapperSize: true,
-      nextButton: '.swiper-button-next',
-      prevButton: '.swiper-button-prev',
+      nextButton: '.swiper-button-next-m',
+      prevButton: '.swiper-button-prev-m',
       // direction: 'horizontal',
       // loop: true, //no loop in controlled mode
       // centeredSlides: true
     });
+    //Clean css
+    $(newSwiperCont).css({
+      'opacity': '',
+      'pointer-events': '',
+      'display':''
+    });
 
+
+
+    //CLICKS————————————————————————
 
 
     var thiss = this;
-    //CLOSE
-    $('.item_pop_z').on({
-      click: function (evt) {
-        $(newSwiperCont).find('.item_pop_z').removeClass('shown');
+    var closePop = function () {
+      $(newSwiperCont).find('.item_pop_z').removeClass('shown');
         $(newSwiperCont).find('.item_pop_b').removeClass('shown');
         setTimeout(function () {
           newSwiperCont.classList.remove('shown');
         },200)
         // $('html, body').animate({scrollTop: scrolltoY }, scrollToSpeed);
+    }
+    //CLOSE
+    $('.popup_close').on({
+      click: function (evt) {
+        closePop();
       }
-      //OTHER CLICKS
     })
+    //OTHER CLICKS
 
   }
 
