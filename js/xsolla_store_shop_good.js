@@ -120,6 +120,20 @@ define([
             oneItem.innerHTML = thiss._shop.formattedPrice(thiss.dataItem['amount']);
             break;
 
+          case 'array':
+            if (!thiss.dataItem[contentType]) break;
+            thiss.dataItem[contentType].forEach(function (oneCustom, i) {
+              if (!i) {
+                oneItem.innerHTML = thiss.dataItem[contentType][0];
+              } else {
+                var clone = oneItem.cloneNode();
+                oneItem.parentNode.appendChild(clone);
+                clone.innerHTML = thiss.dataItem[contentType][i];
+              }
+            });
+            break;
+
+
           case 'image':
             $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem[contentType] + ')' });
             break;
