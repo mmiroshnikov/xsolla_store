@@ -152,7 +152,7 @@ define([
 
     var thiss = this;
     //CLOSE
-    $('.swiper-slide--pop').not('.item_pop_b').on({
+    $('.item_pop_z').on({
       click: function (evt) {
         $(newSwiperCont).find('.item_pop_z').removeClass('shown');
         $(newSwiperCont).find('.item_pop_b').removeClass('shown');
