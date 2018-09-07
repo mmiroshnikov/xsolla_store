@@ -53,26 +53,26 @@ define([
     newEl.dataset.goodTemplate = null;
     newEl.dataset.template = null;
 
-    try {
-      if ($(newEl).find('[data-good=\'image_url\']').length) {
-        $(newEl).find('[data-good=\'image_url\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
-      }
-    } catch (e) { }
+    // try {
+    //   if ($(newEl).find('[data-good=\'image_url\']').length) {
+    //     $(newEl).find('[data-good=\'image_url\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
+    //   }
+    // } catch (e) { }
 
-    if ($(newEl).find('[data-good=\'image_url_custom\']').length && thiss.dataItem['image_url_custom']) {
-      $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url_custom'] + ')' });
-    }
+    // if ($(newEl).find('[data-good=\'image_url_custom\']').length && thiss.dataItem['image_url_custom']) {
+    //   $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url_custom'] + ')' });
+    // }
 
-    if ($(newEl).find('[data-good=\'image_url_custom\']').length && !thiss.dataItem['image_url_custom']) {
-      $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
-    }
+    // if ($(newEl).find('[data-good=\'image_url_custom\']').length && !thiss.dataItem['image_url_custom']) {
+    //   $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
+    // }
 
-    if ($(newEl).find('[data-good=\'youtube\']').length && thiss.dataItem['youtube']) {
-      var you = $(newEl).find('[data-good=\'youtube\']')[0];
-      // var iframe = document.createElement("iframe");
-      // you.setAttribute("src", "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
-      you.setAttribute("src", thiss.dataItem['youtube']);
-    }
+    // if ($(newEl).find('[data-good=\'youtube\']').length && thiss.dataItem['youtube']) {
+    //   var you = $(newEl).find('[data-good=\'youtube\']')[0];
+    //   // var iframe = document.createElement("iframe");
+    //   // you.setAttribute("src", "https://www.youtube.com/embed/" + this.id + "?autoplay=1&autohide=1&border=0&wmode=opaque&enablejsapi=1");
+    //   you.setAttribute("src", thiss.dataItem['youtube']);
+    // }
 
 
     // if ($(newEl).find('[data-good=\'image_url_custom\']').length) {
@@ -93,9 +93,59 @@ define([
     //   } catch (e) { }
     // }
 
-    $(newEl).find('[data-good=\'name\']').html(this.dataItem['name']);
-    $(newEl).find('[data-good=\'desc\']').html(this.dataItem['description']);
-    $(newEl).find('[data-good=\'amount\']').html(this._shop.formattedPrice(this.dataItem['amount']));
+
+      var thiss = this;
+      var dataItems = $(newEl).find(':attrStrict(\'data-good\')');
+      dataItems.each(function (i, oneItem) {
+        var contentType = oneItem.dataset.good;
+        var contentGlobalType = contentType;
+
+        var contSplit = contentType.split(/_(.+)/);
+        if (contSplit.length > 1) {
+          contentGlobalType = contSplit[0];
+          // contentType = contSplit[1];
+        };
+
+
+        switch (contentGlobalType) {
+          case 'name':
+            oneItem.innerHTML = thiss.dataItem['name'];
+            break;
+
+          case 'description':
+            oneItem.innerHTML = thiss.dataItem['description'];
+            break;
+
+          case 'amount':
+            oneItem.innerHTML = thiss._shop.formattedPrice(thiss.dataItem['amount']);
+            break;
+
+          case 'image':
+            $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem[contentType] + ')' });
+            break;
+
+          case 'image_url_custom':
+            if (thiss.dataItem['image_url_custom']) {
+              $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem['image_url_custom'] + ')' });
+            } else {
+              $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
+            }
+            break;
+
+          default:
+            if (thiss.dataItem[contentType]) {
+              oneItem.innerHTML = thiss.dataItem[contentType];
+            }
+            break;
+        }
+
+      })
+
+
+
+    // $(newEl).find('[data-good=\'name\']').html(this.dataItem['name']);
+    // $(newEl).find('[data-good=\'desc\']').html(this.dataItem['description']);
+    // $(newEl).find('[data-good=\'amount\']').html(this._shop.formattedPrice(this.dataItem['amount']));
 
     if (this.isFavorite) {
       $(newEl).find('[data-good=\'is_favorite\']').removeClass('x_off');

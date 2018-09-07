@@ -42,8 +42,14 @@ define([
         // spaceBetween: 0,
         // initialSlide: 1,
         // setWrapperSize: true,
-        nextButton: '.swiper-button-next-m',
-        prevButton: '.swiper-button-prev-m',
+        navigation: {
+          nextEl: '.swiper-button-next-m',
+          prevEl: '.swiper-button-prev-m',
+        },
+        noSwipingClass: 'swiper-button_prev-next',
+        pagination: {
+          el: '.swiper-pagination',
+        },
         // direction: 'horizontal',
         // loop: true, //no loop in controlled mode
         // centeredSlides: true
@@ -92,17 +98,25 @@ define([
                     },
                     {
                       'div': {
-                        'class': 'swiper-button-prev-m'
+                        'class': 'swiper-button_prev-next swiper-button_prev-next--pop swiper-button-next-m',
+                        'text': 'chevron_right',
+                        'style': {
+                          'outline': 'none'
+                        }
                       }
                     },
                     {
                       'div': {
-                        'class': 'swiper-button-next-m'
+                        'class': 'swiper-button_prev-next swiper-button_prev-next--pop swiper-button-prev-m',
+                        'text': 'chevron_left',
+                        'style': {
+                          'outline': 'none'
+                        }
                       }
                     },
                     {
                       'div': {
-                        'class': 'swiper-pagination'
+                        'class': 'swiper-pagination swiper-pagination-bullets',
                       }
                     }
                     ]
@@ -175,12 +189,18 @@ define([
       'display':'flex'
     });
     this.popSwiper = new Swiper('#xsolla_store_pops_swiper', {
+      pagination: {
+        el: '.swiper-pagination'
+      },
+      navigation: {
+        nextEl: '.swiper-button-next-m',
+        prevEl: '.swiper-button-prev-m',
+      },
+      noSwipingClass: 'swiper-button_prev-next',
       slidesPerView: 1,
+      setWrapperSize: true,
       // spaceBetween: 0,
       // initialSlide: 1,
-      setWrapperSize: true,
-      nextButton: '.swiper-button-next-m',
-      prevButton: '.swiper-button-prev-m',
       // direction: 'horizontal',
       // loop: true, //no loop in controlled mode
       // centeredSlides: true
