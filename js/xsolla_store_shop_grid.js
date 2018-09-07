@@ -67,6 +67,12 @@ define([
             },
             {
               'div': {
+                  'class': 'item_pop_x',
+                  'text': 'close'
+              }
+            },
+            {
+              'div': {
                 'class': 'swiper-container swiper-container--pop',
                 'id': 'xsolla_store_pops_swiper',
                 'children': [{
