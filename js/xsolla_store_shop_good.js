@@ -54,17 +54,17 @@ define([
     newEl.dataset.template = null;
 
     try {
-      if ($(newEl).find('[data-good=\'image_url\']')[0]) {
-        $(newEl).find('[data-good=\'image_url\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
+      if ($(newEl).find('[data-good=\'image_url\']').length) {
+        $(newEl).find('[data-good=\'image_url\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
       }
     } catch (e) { }
 
     if ($(newEl).find('[data-good=\'image_url_custom\']').length && thiss.dataItem['image_url_custom']) {
-      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url_custom'] + ')';
+      $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url_custom'] + ')' });
     }
 
     if ($(newEl).find('[data-good=\'image_url_custom\']').length && !thiss.dataItem['image_url_custom']) {
-      $(newEl).find('[data-good=\'image_url_custom\']')[0].style.backgroundImage = 'url(' + thiss.dataItem['image_url'] + ')';
+      $(newEl).find('[data-good=\'image_url_custom\']').css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
     }
 
     if ($(newEl).find('[data-good=\'youtube\']').length && thiss.dataItem['youtube']) {

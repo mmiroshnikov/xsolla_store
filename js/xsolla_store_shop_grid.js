@@ -61,13 +61,13 @@ define([
           'id': 'xsolla_store_pops',
           'children': [{
               'div': {
-                  'class': 'item_pop_z shown',
+                  'class': 'item_pop_z',
                   'text': ''
               }
             },
             {
               'div': {
-                  'class': 'item_pop_x',
+                  'class': 'item_pop_z item_pop_x',
                   'text': 'close'
               }
             },
