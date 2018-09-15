@@ -135,8 +135,8 @@ define([
 
 
           case 'image':
-            if (thiss.dataItem['image_url_custom']) {
-              $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem['image_url_custom'] + ')' });
+            if (thiss.dataItem[contentType]) {
+              $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem[contentType] + ')' });
             } else {
               $(oneItem).css({ 'background-image': 'url(' + thiss.dataItem['image_url'] + ')' });
             }

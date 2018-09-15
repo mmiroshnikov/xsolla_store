@@ -14,7 +14,7 @@ define([
     this.gridTemplate = this.getGridTemplate();
     // this.template = this.getShopGoodTemplate();
     // this.gridTemplate = this.getTemplate();
-
+    this.popSwiper;
     this._dataArr = this._shop.getIndexes(this.typeName, this.typeVal);
     this.element = this.renderGrid();
     this.goodPopups = null;
