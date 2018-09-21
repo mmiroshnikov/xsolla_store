@@ -9,7 +9,7 @@ define([
 
 
   GenericPopups.prototype.getPopups = function () {
-    var p = [];
+    var p = {};
 
     $(':attr(\'^data-xpop\')').each(function (i, oneTrigger) {
       var popData = oneTrigger.dataset.xpop;
@@ -24,8 +24,10 @@ define([
           '$popZ': '',
         }
       }
+    });
 
-      Object.keys(p).forEach(function (onePopUniqName, i) {
+
+    Object.keys(p).forEach(function (onePopUniqName, i) {
         var onePopName = p[onePopUniqName]['name'];
         p[onePopUniqName]['$pop'] = $('[data-xpop=\'' + onePopName + '\']');
         p[onePopUniqName]['$popB'] = p[onePopUniqName]['$pop'].find('[data-xpop=\'b\']');
@@ -34,6 +36,7 @@ define([
 
         $(p[onePopUniqName]['trigger']).on({
           click: function (evt) {
+            evt.stopPropagation();
             p[onePopUniqName]['$pop'].addClass('shown');
             setTimeout(function () {
               p[onePopUniqName]['$popB'].addClass('shown');
@@ -52,8 +55,6 @@ define([
           }
         })
 
-
-      })
     })
     return p;
   }

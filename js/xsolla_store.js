@@ -78,12 +78,17 @@ var mainSettings_default =  {
 
 
 
-requirejs.config({
-  baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/',
-  // paths: {
-  //   'fragbuilder': 'http://xsolla.maiik.ru/xsolla_store/libs/fragbuilder',
-  // }
-});
+// requirejs.config({
+//   baseUrl: 'http://xsolla.maiik.ru/xsolla_store/js/',
+//   // paths: {
+//   //   'fragbuilder': 'http://xsolla.maiik.ru/xsolla_store/libs/fragbuilder',
+//   // }
+// });
+
+
+
+
+
 
 define([
   'xsolla_store_shop',

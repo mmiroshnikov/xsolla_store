@@ -175,6 +175,7 @@ define([
 
       newSwiperCont.querySelector('.swiper-wrapper').appendChild(newSwiperSlide);
       var oneSlide = slides[popName];
+      $(oneSlide.el.querySelector('.item_container'))[0].dataset.idd = oneSlide._good.sku;
       $(oneSlide.el.querySelector('.item_container')).detach().appendTo(newSwiperSlide.querySelector('.item_pop_b'));
 
     })
