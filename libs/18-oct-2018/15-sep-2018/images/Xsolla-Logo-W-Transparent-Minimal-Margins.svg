@@ -1,0 +1,41 @@
+<svg width="390" height="390" viewBox="0 0 390 390" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Xsolla Logo W Transparent Minimal Margins</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="translate(-1019 -1854)">
+<clipPath id="clip-0" clip-rule="evenodd">
+<path d="M 1019 1854L 1409 1854L 1409 2244L 1019 2244L 1019 1854Z" fill="#FFFFFF"/>
+</clipPath>
+<g id="Xsolla Logo W Transparent Minimal Margins" clip-path="url(#clip-0)">
+<g id="Xsolla logo">
+<g id="Logo">
+<g id="path34">
+<use xlink:href="#path0_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1091.5 2100.42)" fill="#FFFFFF"/>
+</g>
+<g id="path24">
+<use xlink:href="#path1_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1197.5 2171.26)" fill="#FFFFFF"/>
+</g>
+<g id="path26">
+<use xlink:href="#path2_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1217.51 2171.26)" fill="#FFFFFF"/>
+</g>
+<g id="path22">
+<use xlink:href="#path3_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1280.18 2102.75)" fill="#FFFFFF"/>
+</g>
+<g id="path30">
+<use xlink:href="#path4_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1255.65 2002.64)" fill="#FFFFFF"/>
+</g>
+<g id="Vector">
+<use xlink:href="#path5_fill" transform="matrix(1 -1.22465e-16 -1.22465e-16 -1 1129.42 1996.2)" fill="#FFFFFF"/>
+</g>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<path id="path0_fill" d="M 29.3843 24.3989L 35.8676 13.182L 22.7764 13.182L 29.3843 24.3989ZM 29.3793 50.68L -1.87757e-13 2.854e-06L 58.6573 2.854e-06L 29.3793 50.68Z"/>
+<path id="path1_fill" d="M 13.8074 -7.24609e-07L -4.27734e-07 -7.24609e-07L -4.27734e-07 47.6475L 13.8074 47.6475L 13.8074 -7.24609e-07Z"/>
+<path id="path2_fill" d="M 13.8024 -7.24609e-07L -3.63623e-06 -7.24609e-07L -3.63623e-06 47.6475L 13.8024 47.6475L 13.8024 -7.24609e-07Z"/>
+<path id="path3_fill" d="M 26.6461 39.2274C 19.5563 39.2274 13.8971 33.4613 13.8971 26.4935C 13.8971 19.539 19.5563 13.8708 26.6461 13.8708C 33.6113 13.8708 39.2771 19.539 39.2771 26.4935C 39.2771 33.4613 33.6113 39.2274 26.6461 39.2274ZM 26.6461 -8.39355e-07C 11.9681 -8.39355e-07 5.58691e-06 11.8393 5.58691e-06 26.4935C 5.58691e-06 41.1627 11.9681 53.0053 26.6461 53.0053C 41.2161 53.0053 53.1709 41.1627 53.1709 26.4935C 53.1709 11.8393 41.2161 -8.39355e-07 26.6461 -8.39355e-07Z"/>
+<path id="path4_fill" d="M 19.6278 40.7495L 33.2092 54.3265L 23.3579 64.0579L 9.87619 50.4891L 1.86523e-07 40.7843L 17.5093 23.2901L 4.04916 9.84088L 13.8008 -2.63242e-08L 37.1637 23.3316L 19.6278 40.7495Z"/>
+<path id="path5_fill" d="M 51.8669 42.7769L 42.8166 51.907L 26.2838 35.3949L 25.9304 35.0419L 25.5771 35.3949L 9.04935 51.9069L 0.00123377 42.7774L 16.5394 26.3656L 16.8959 26.0118L 16.5406 25.6569L 1.61792e-06 9.13538L 9.04935 8.28949e-05L 25.577 16.5201L 25.9304 16.8733L 26.2839 16.5201L 42.8166 -7.47974e-08L 51.8681 9.13595L 35.378 25.6574L 35.0243 26.0118L 35.3792 26.365L 51.8669 42.7769Z"/>
+</defs>
+</svg>

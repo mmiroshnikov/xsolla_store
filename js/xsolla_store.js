@@ -1,3 +1,5 @@
+var version = 18102018;
+
 var debug = debug || true; //вывод всяких сообщений в консоль
 
 var mainSettings_default =  {
@@ -36,7 +38,7 @@ var mainSettings_default =  {
       var s = document.createElement('script');
       s.type = 'text/javascript';
       s.async = true;
-      s.src = '//static.xsolla.com/embed/paystation/1.0.7/widget.min.js';
+      s.src = 'https://static.xsolla.com/embed/paystation/1.0.7/widget.min.js';
       var head = document.getElementsByTagName('head')[0];
       head.appendChild(s);
     },

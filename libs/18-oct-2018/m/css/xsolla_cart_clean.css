@@ -1,0 +1,33 @@
+.inactive .inside_active_hide {
+  display:flex !important;
+}
+.inactive .inside_active_show {
+  display:none !important;
+}
+.active .inside_active_hide {
+  display:none !important;
+}
+.active .inside_active_show {
+  display:flex !important;
+}
+
+.k div,
+.xsolla_cart_but {
+  user-select: none;
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -o-user-select: none;
+}
+
+.hidden {
+  display: none !important;
+}
+.invisible {
+  visibility: hidden !important;
+}
+
+
+
+
+

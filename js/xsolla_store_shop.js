@@ -7,7 +7,7 @@ define([
   'xsolla_store_cart',
   'xsolla_store_shop_grid',
   'xsolla_store_shop_staticbutton',
-  'widget.min',
+  // 'widget.min',
 ], function (Cart, ShopGrid, ShopStaticButton, XPayStationWidget) {
 
 

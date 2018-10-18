@@ -1,7 +1,7 @@
 define([
   'xsolla_store_shop',
   'xsolla_store_shop_cart_good',
-  'widget.min',
+  // 'widget.min',
 ], function (Shop, CartGood, XPayStationWidget) {
 
 

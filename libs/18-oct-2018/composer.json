@@ -1,0 +1,12 @@
+{
+    "name": "grisha/xsolla-login",
+    "require": {
+        "firebase/php-jwt": "^5.0"
+    },
+    "authors": [
+        {
+            "name": "Grisha",
+            "email": "grisha@grisha.co"
+        }
+    ]
+}

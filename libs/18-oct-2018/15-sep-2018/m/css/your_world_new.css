@@ -1,0 +1,98 @@
+/* ---------------LOGIN */
+
+
+.footer ul.footer-links>li>a {
+  color: white !important;
+}
+
+
+
+
+
+.ellipsis {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hidden {
+	display: none !important;
+}
+.sticky {
+	top: 0px;
+  position: -webkit-sticky !important;
+	position: sticky !important;
+}
+.m.sticky {
+	top: 60px !important;
+}
+.k_desc {
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+}
+
+
+
+.noselect {
+  -webkit-touch-callout: none !important; /* iOS Safari */
+    -webkit-user-select: none !important; /* Safari */
+     -khtml-user-select: none !important; /* Konqueror HTML */
+       -moz-user-select: none !important; /* Firefox */
+        -ms-user-select: none !important; /* Internet Explorer/Edge */
+            user-select: none !important; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.noclick {
+  pointer-events: none;
+}
+
+
+
+.swiper-pagination-bullet {
+  background: rgba(255, 255, 255, 0.5);
+  margin: 0 7px;
+}
+
+.swiper-container-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet {
+  margin: 0 7px;
+}
+
+.swiper-button_prev-next:focus {
+  /* outline: -webkit-focus-ring-color auto 5px;
+  outline-color: -webkit-focus-ring-color;
+  outline-style: auto;
+  outline-width: 5px; */
+  outline: none;
+}
+
+.item_inner:hover .item_image {
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 2px;
+  box-shadow: none;
+}
+
+.item_inner:hover .item_image.item_image--nohover {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  /* box-shadow: none; */
+}
+
+.item_inner:hover .item_image .item_image_hover {
+  opacity: 1;
+}
+
+
+a.xyw_logo:link,
+a.xyw_logo:visited,
+a.xyw_logo:active {
+  color: currentColor;
+}
+a:link,
+a:visited,
+a:active {
+  color: currentColor;
+}

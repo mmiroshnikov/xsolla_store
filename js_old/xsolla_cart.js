@@ -22,10 +22,6 @@ var debug = debug || true; //вывод всяких сообщений в ко�
 
 
 
-
-
-
-
 Xsolla.prototype.setPreloader = function (thiss, doo) {
   var $prel = $('[data-shop=\'preloader\']');
   if (!$prel.length) return;
