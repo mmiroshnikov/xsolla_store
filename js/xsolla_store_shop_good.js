@@ -34,7 +34,9 @@ define([
 
   ShopGood.prototype.getTemplate = function () {
     this.container = $(this._grid.element).find(':attr(\'^data-good-template\')')[0].parentElement;
-    return $(this._grid.element).find(':attr(\'^data-good-template\')')[0];
+    var templ = $(this._grid.element).find(':attr(\'^data-good-template\')')[0];
+    templ.classList.add('hidden');
+    return templ;
   }
 
 

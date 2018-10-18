@@ -323,7 +323,7 @@ define([
       tmpl = $('[data-good-template=\'' + templateName + '\']').closest('[data-shop-grid=\'template\']')[0] ||
         $('[data-good-template=\'' + templateName + '\']')[0].parentElement;
     }
-
+    tmpl.classList.add('hidden');
     return tmpl;
   }
 
